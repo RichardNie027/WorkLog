@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -59,7 +60,7 @@
         <scene sceneID="3IR-Ra-ZXV">
             <objects>
                 <navigationController id="V19-u0-3tX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="今天" image="square.and.pencil" catalog="system" id="gTz-Px-D98"/>
+                    <tabBarItem key="tabBarItem" title="今天" image="scribble" catalog="system" id="gTz-Px-D98"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XhZ-qx-xAr">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -72,30 +73,35 @@
             </objects>
             <point key="canvasLocation" x="-514" y="-743"/>
         </scene>
-        <!--今天的工作-->
+        <!--今天的工作日志-->
         <scene sceneID="P2G-iz-d3s">
             <objects>
                 <tableViewController id="CcC-38-Bye" customClass="TodayTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ZlB-cN-fpd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ZlB-cN-fpd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="NVI-0s-VZz">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NVI-0s-VZz" id="hIJ-C4-Jw2">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KP-KL-N0e">
-                                            <rect key="frame" x="20" y="11" width="254" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KP-KL-N0e">
+                                            <rect key="frame" x="20" y="17" width="374" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="6KP-KL-N0e" secondAttribute="trailing" id="6yx-06-bLC"/>
+                                        <constraint firstItem="6KP-KL-N0e" firstAttribute="leading" secondItem="hIJ-C4-Jw2" secondAttribute="leadingMargin" id="MOl-eS-9vc"/>
+                                        <constraint firstItem="6KP-KL-N0e" firstAttribute="top" secondItem="hIJ-C4-Jw2" secondAttribute="topMargin" constant="6" id="QRh-OO-sVJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="6KP-KL-N0e" secondAttribute="bottom" constant="6" id="rXi-ud-lW3"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -104,16 +110,67 @@
                             <outlet property="delegate" destination="CcC-38-Bye" id="dTB-vX-AG8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="今天的工作" id="6cS-P8-Zxs"/>
+                    <navigationItem key="navigationItem" title="今天的工作日志" id="6cS-P8-Zxs"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pd2-D8-qkf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="340.57971014492756" y="-743.30357142857144"/>
         </scene>
+        <!--Job View Controller-->
+        <scene sceneID="ZDu-on-LgO">
+            <objects>
+                <viewController storyboardIdentifier="JobViewController" id="mxk-Ch-INH" customClass="JobViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8jQ-wZ-L0L">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UgM-jS-Q9u">
+                                <rect key="frame" x="20" y="124" width="374" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="LbC-Tp-DJx"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="E5J-E6-Qzo">
+                                <rect key="frame" x="134.5" y="64" width="145" height="32"/>
+                                <segments>
+                                    <segment title="今日工作"/>
+                                    <segment title="明日计划"/>
+                                </segments>
+                                <connections>
+                                    <action selector="OnSegmentValueChanged:" destination="mxk-Ch-INH" eventType="valueChanged" id="drG-JV-b4g"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="egv-0j-fPZ"/>
+                        <color key="backgroundColor" red="0.89914530520000002" green="0.92546337840000004" blue="0.97719389199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="E5J-E6-Qzo" firstAttribute="top" secondItem="egv-0j-fPZ" secondAttribute="top" constant="20" id="34U-yA-0sc"/>
+                            <constraint firstItem="egv-0j-fPZ" firstAttribute="trailing" secondItem="UgM-jS-Q9u" secondAttribute="trailing" constant="20" id="QEE-qz-5yh"/>
+                            <constraint firstItem="E5J-E6-Qzo" firstAttribute="centerX" secondItem="8jQ-wZ-L0L" secondAttribute="centerX" id="ZR4-Cj-cqX"/>
+                            <constraint firstItem="UgM-jS-Q9u" firstAttribute="leading" secondItem="egv-0j-fPZ" secondAttribute="leading" constant="20" id="kHE-hg-7DP"/>
+                            <constraint firstItem="UgM-jS-Q9u" firstAttribute="top" secondItem="egv-0j-fPZ" secondAttribute="top" constant="80" id="tT6-rb-EAl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="jobContent" destination="UgM-jS-Q9u" id="xNy-X6-GEx"/>
+                        <outlet property="jobKind" destination="E5J-E6-Qzo" id="N5W-f4-Fw9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ASW-MX-g4H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1147.8260869565217" y="-743.30357142857144"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="106"/>
-        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <image name="scribble" catalog="system" width="128" height="118"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
