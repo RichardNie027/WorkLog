@@ -15,6 +15,7 @@ static NSString * const kColumnID = @"jobId";
 static NSString * const kColumnJobContent = @"jobContent";
 static NSString * const kColumnJobKind = @"jobKind";
 static NSString * const kColumnJobDate = @"jobDate";
+static NSString * const kColumnJobIdx = @"jobIdx";
 
 @implementation DBHelper
 
@@ -47,12 +48,14 @@ static NSString * const kColumnJobDate = @"jobDate";
                            "%@ INTEGER PRIMARY KEY AUTOINCREMENT,"
                            "%@ TEXT,"
                            "%@ TEXT,"
+                           "%@ INTEGER,"
                            "%@ INTEGER)",
                            kTableName,
                            kColumnID,
                            kColumnJobContent,
                            kColumnJobKind,
-                           kColumnJobDate
+                           kColumnJobDate,
+                           kColumnJobIdx
                            ];
     BOOL success = [db executeUpdate:createSql];
     if (success) {
@@ -65,8 +68,8 @@ static NSString * const kColumnJobDate = @"jobDate";
 + (void)saveWorkLog:(WorkLogPo *)po {
     //如果原本已经存在了相同的，则应该将其删除
     [self deleteWorkLog:po];
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO %@(%@,%@,%@) VALUES(?,?,?)",kTableName,kColumnJobContent,kColumnJobKind,kColumnJobDate];
-    BOOL success = [db executeUpdate:insertSql,po.jobId,po.jobContent,po.jobKind,@(po.jobDate)];
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO %@(%@,%@,%@,%@) VALUES(?,?,?,?)",kTableName,kColumnJobContent,kColumnJobKind,kColumnJobDate,kColumnJobIdx];
+    BOOL success = [db executeUpdate:insertSql,po.jobContent,po.jobKind,@(po.jobDate),@(po.jobIdx)];
     
     if (success) {
         NSLog(@"插入数据成功");
@@ -90,6 +93,8 @@ static NSString * const kColumnJobDate = @"jobDate";
 
 + (BOOL)deleteWorkLogById:(NSInteger)jobId {
     BOOL success = YES;
+    if(jobId <= 0)
+        return success;
     NSString *deleteSql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = ?",kTableName,kColumnID];
     BOOL isCan = [db executeUpdate:deleteSql, jobId];
     if (!isCan) {
@@ -102,15 +107,20 @@ static NSString * const kColumnJobDate = @"jobDate";
 }
 
 + (BOOL)deleteWorkLog:(WorkLogPo *)po {
-    return [self deleteWorkLogById: po.jobId];
+    if(po.jobId <= 0)
+        return YES;
+    else
+        return [self deleteWorkLogById: po.jobId];
 }
 
 //todo:unfinished
 + (id)getWorkLogsBefore:(NSDate *)baseDate forDays:(NSInteger) days {
+    NSInteger toDate = 20220606;
+    NSInteger fromDate = 20220601;
     NSString *searchSql = nil;
     FMResultSet *set = nil;
-    searchSql = [NSString stringWithFormat:@"SELECT * FROM %@",kTableName];
-    set = [db executeQuery:searchSql];
+    searchSql = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@ <= ? AND %@ >= ? ORDER BY %@ DESC, %@",kTableName,kColumnJobDate,kColumnJobDate,kColumnJobDate,kColumnJobIdx];
+    set = [db executeQuery:searchSql, fromDate, toDate];
     //执行sql语句，在FMDB中，除了查询语句使用executQuery外，其余的增删改查都使用executeUpdate来实现。
     int i = 0;
     while (set.next) {
