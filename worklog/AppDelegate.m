@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DBHelper.h"
 
 @interface AppDelegate ()
 
@@ -16,9 +17,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSSetUncaughtExceptionHandler(&UncaughtExceptionHandler);
+
+    [DBHelper initDatabase];
     return YES;
 }
 
+- (void)applicationWillTerminate:(UIApplication *)application {
+    [DBHelper closeDatabase];
+}
 
 #pragma mark - UISceneSession lifecycle
 
@@ -36,5 +43,13 @@
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
+// 获取异常崩溃信息
+void UncaughtExceptionHandler(NSException *exception) {
+    NSArray *callStack = [exception callStackSymbols];
+    NSString *reason = [exception reason];
+    NSString *name = [exception name];
+    NSString *errorMessage = [NSString stringWithFormat:@"========异常错误报告========\nname:%@\nreason:\n%@\ncallStackSymbols:\n%@",name,reason,[callStack componentsJoinedByString:@"\n"]];
+    NSLog(@"errorMessage = %@", errorMessage);
+}
 
 @end

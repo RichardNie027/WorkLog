@@ -7,12 +7,24 @@
 
 #import "Const.h"
 
-/// 主蓝色
+/// 蓝色深
 NSString * const G_MainColor = @"#195cf2";
-/// 主绿色
+/// 绿色深
 NSString * const G_SecondColor = @"#7ec700";
+/// 三色深
+NSString * const G_ThirdColor = @"#ff8d3f";
 
-/// 主蓝色浅
+/// 蓝色浅
 NSString * const G_MainColorLight = @"#e5ecf9";
-/// 主绿色浅
+/// 绿色浅
 NSString * const G_SecondColorLight = @"#f2ffdc";
+/// 三色浅
+NSString * const G_ThirdColorLight = @"#fce6d5";
+
+///工作项类型 Done Plan Future
+NSString * const G_JobKinds[3] = {@"D", @"P", @"F"};
+///工作项类型文本
+NSString * const G_JobKindsText[3] = {@"今日工作", @"明日计划", @"未来事项"};
+///工作项类型颜色
+NSString * const G_JobKindsColor[3] = {G_MainColor, G_SecondColor, G_ThirdColor};
+NSString * const G_JobKindsColorLight[3] = {G_MainColorLight, G_SecondColorLight, G_ThirdColorLight};

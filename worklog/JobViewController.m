@@ -6,6 +6,8 @@
 //
 
 #import "JobViewController.h"
+#import "DBHelper.h"
+#import "NotedownTableViewController.h"
 
 @interface JobViewController ()
 
@@ -16,13 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"ABC";
+    self.navigationItem.title = self.inEdit ? @"修改" : @"新增";
     [self resetBarItemsWithState:1];
-    self.jobContent.text = self.text;
-    [self.jobKind setSelectedSegmentIndex: self.jobKindIdx];
-    [self OnSegmentValueChanged:self.jobKind];
+    self.uiJobContent.text = self.jobContent;
+    [self.uiJobKind setSelectedSegmentIndex: self.jobKindIdx];
+    [self OnSegmentValueChanged:self.uiJobKind];
     
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem.backBarButtonItem setTitle:@"返回"];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self.uiJobContent becomeFirstResponder];
 }
 
 - (void)resetBarItemsWithState:(NSInteger)state  {
@@ -31,15 +37,45 @@
 }
 
 -(void)OnSaveButton {
+    if ([self.uiJobContent.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) {
+        //todo: 提示填写内容
+        return;
+    }
     
+    BOOL kindChanged = NO;
+    WorkLogPo *po = [[WorkLogPo alloc] init];
+    if(self.inEdit) {
+        kindChanged = self.uiJobKind.selectedSegmentIndex != self.jobKindIdx;
+        if(kindChanged || ![self.jobContent isEqualToString:self.uiJobContent.text]) {
+            po.jobId = self.jobId;
+            po.jobDate = self.jobDate;
+            if (kindChanged) //改变类别了
+                po.jobIdx = 9;  //放在新组的第一个
+            else
+                po.jobIdx = self.jobIdx;
+        } else {
+            //todo: 提示无变化
+            return;
+        }
+    } else {
+        po.jobId = -1;
+        po.jobDate = [NSDate dateToInteger:[NSDate date]];
+        po.jobIdx = [DBHelper queryWorkLogsCountOn:[NSDate date] withJobKind:G_JobKinds[self.uiJobKind.selectedSegmentIndex]] * 10 + 10;
+    }
+    po.jobContent = self.uiJobContent.text;
+    po.jobKind = G_JobKinds[self.uiJobKind.selectedSegmentIndex];
+    [DBHelper saveWorkLog:po];
+    if(kindChanged) {
+        [DBHelper reIndexWorkLog:[NSDate date]];
+    }
+    //导航返回，传值
+    G_NEED_RELOAD_DATA = TRUE;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Segment
 - (IBAction)OnSegmentValueChanged:(id)sender {
-    if(self.jobKind.selectedSegmentIndex == 0)
-        self.view.backgroundColor = [UIColor colorWithHexString:G_MainColorLight];
-    else
-        self.view.backgroundColor = [UIColor colorWithHexString:G_SecondColorLight];
+    self.view.backgroundColor = [UIColor colorWithHexString:G_JobKindsColorLight[self.uiJobKind.selectedSegmentIndex]];
 }
 
 /*

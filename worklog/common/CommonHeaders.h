@@ -9,6 +9,8 @@
 #define CommonHeaders_h
 
 #import "Const.h"
+#import "Vars.h"
 #import "UIColor+Hex.h"
+#import "NSDate+FMT.h"
 
 #endif /* CommonHeaders_h */
