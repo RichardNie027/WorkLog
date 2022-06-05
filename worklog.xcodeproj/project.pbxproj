@@ -53,6 +53,9 @@
 		798FB34C284AC53C002F2497 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FB32F284AC53C002F2497 /* MJRefreshAutoFooter.m */; };
 		798FB34D284AC53C002F2497 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FB331284AC53C002F2497 /* MJRefreshComponent.m */; };
 		798FB34E284AC53C002F2497 /* MJRefreshTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = 798FB334284AC53C002F2497 /* MJRefreshTrailer.m */; };
+		79F6A367284C544200042CEE /* ToastConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F6A364284C544200042CEE /* ToastConfig.m */; };
+		79F6A368284C544200042CEE /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F6A365284C544200042CEE /* ToastView.m */; };
+		79F6A369284C544200042CEE /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 79F6A366284C544200042CEE /* Toast.m */; };
 		99391DC228461B2700660FCB /* JobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99391DC128461B2700660FCB /* JobViewController.m */; };
 		99D1CFF42846FBE3007C3AB7 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D1CFF32846FBE3007C3AB7 /* Const.m */; };
 		99D1CFFF284753D9007C3AB7 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D1CFFE284753D9007C3AB7 /* DBHelper.m */; };
@@ -185,6 +188,12 @@
 		798FB332284AC53C002F2497 /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
 		798FB333284AC53C002F2497 /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
 		798FB334284AC53C002F2497 /* MJRefreshTrailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshTrailer.m; sourceTree = "<group>"; };
+		79F6A361284C544200042CEE /* ToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
+		79F6A362284C544200042CEE /* ToastConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastConfig.h; sourceTree = "<group>"; };
+		79F6A363284C544200042CEE /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
+		79F6A364284C544200042CEE /* ToastConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastConfig.m; sourceTree = "<group>"; };
+		79F6A365284C544200042CEE /* ToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastView.m; sourceTree = "<group>"; };
+		79F6A366284C544200042CEE /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
 		99391DC028461B2700660FCB /* JobViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobViewController.h; sourceTree = "<group>"; };
 		99391DC128461B2700660FCB /* JobViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobViewController.m; sourceTree = "<group>"; };
 		99D1CFF32846FBE3007C3AB7 /* Const.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Const.m; sourceTree = "<group>"; };
@@ -239,6 +248,7 @@
 		794D6CF22843ABF4008CD416 /* worklog */ = {
 			isa = PBXGroup;
 			children = (
+				79F6A360284C544200042CEE /* Toast */,
 				798FB2E1284AC53C002F2497 /* MJRefresh */,
 				79617ABC284500CB0001E8E7 /* Masonry */,
 				99D1D016284761F3007C3AB7 /* FCFileManager */,
@@ -454,6 +464,19 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		79F6A360284C544200042CEE /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				79F6A361284C544200042CEE /* ToastView.h */,
+				79F6A365284C544200042CEE /* ToastView.m */,
+				79F6A362284C544200042CEE /* ToastConfig.h */,
+				79F6A364284C544200042CEE /* ToastConfig.m */,
+				79F6A363284C544200042CEE /* Toast.h */,
+				79F6A366284C544200042CEE /* Toast.m */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		99D1CFF62846FCE3007C3AB7 /* common */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,6 +610,7 @@
 				79617AB72844DEF40001E8E7 /* UIColor+Hex.m in Sources */,
 				790A2B452849D1AB0033C3DB /* NSDate+FMT.m in Sources */,
 				79617ADB284500CB0001E8E7 /* MASLayoutConstraint.m in Sources */,
+				79F6A368284C544200042CEE /* ToastView.m in Sources */,
 				99D1D0102847553E007C3AB7 /* FMDatabase.m in Sources */,
 				798FB33E284AC53C002F2497 /* MJRefreshBackStateFooter.m in Sources */,
 				798FB335284AC53C002F2497 /* UIScrollView+MJRefresh.m in Sources */,
@@ -595,11 +619,13 @@
 				794D6CF52843ABF4008CD416 /* AppDelegate.m in Sources */,
 				99D1D0112847553E007C3AB7 /* FMDatabasePool.m in Sources */,
 				798FB34A284AC53C002F2497 /* MJRefreshHeader.m in Sources */,
+				79F6A369284C544200042CEE /* Toast.m in Sources */,
 				798883E7284B87E2008F347C /* Vars.m in Sources */,
 				794D6D062843ABF5008CD416 /* main.m in Sources */,
 				798FB344284AC53C002F2497 /* MJRefreshNormalTrailer.m in Sources */,
 				79617AE0284500CB0001E8E7 /* MASViewAttribute.m in Sources */,
 				798FB349284AC53C002F2497 /* MJRefreshFooter.m in Sources */,
+				79F6A367284C544200042CEE /* ToastConfig.m in Sources */,
 				79617ADC284500CB0001E8E7 /* NSArray+MASAdditions.m in Sources */,
 				79617AD9284500CB0001E8E7 /* MASCompositeConstraint.m in Sources */,
 				99D1D01528475BC4007C3AB7 /* WorkLogPo.m in Sources */,

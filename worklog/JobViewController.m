@@ -8,6 +8,7 @@
 #import "JobViewController.h"
 #import "DBHelper.h"
 #import "NotedownTableViewController.h"
+#import "Toast/Toast.h"
 
 @interface JobViewController ()
 
@@ -38,7 +39,9 @@
 
 -(void)OnSaveButton {
     if ([self.uiJobContent.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0) {
-        //todo: 提示填写内容
+        [Toast showMessage:@"内容不能为空" originY:self.uiJobContent.frame.origin.y+_uiJobContent.frame.size.height/2-10 duration:2 finishHandler:^{
+            
+        }];
         return;
     }
     
@@ -54,7 +57,9 @@
             else
                 po.jobIdx = self.jobIdx;
         } else {
-            //todo: 提示无变化
+            [Toast showMessage:@"没有任何修改" originY:self.uiJobContent.frame.origin.y+_uiJobContent.frame.size.height/2-10 duration:2 finishHandler:^{
+                
+            }];
             return;
         }
     } else {

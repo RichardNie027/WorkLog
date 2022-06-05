@@ -210,5 +210,22 @@ static NSString * const kColumnJobIdx = @"jobIdx";
     NSLog(@"数据已重建索引");
 }
 
+//清除指定天数之前的记录
++ (BOOL)cleanWorkLogsBeforeDays:(NSInteger) days {
+    BOOL success = YES;
+    if(days < 0)
+        days = 0;
+    NSInteger dateInt = [NSDate dateToInteger: [NSDate date:[NSDate date] addYears:0 Month:0 addDays:0-days]];
+    NSString *deleteSql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ <= ?",kTableName,kColumnJobDate];
+    BOOL isCan = [db executeUpdate:deleteSql, @(dateInt)];
+    if (!isCan) {
+        success = NO;
+        NSLog(@"删除失败");
+    } else {
+        NSLog(@"删除成功");
+    }
+    return success;
+}
+
 @end
 

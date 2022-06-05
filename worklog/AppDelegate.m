@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "DBHelper.h"
+#import "common/CommonHeaders.h"
 
 @interface AppDelegate ()
 
@@ -20,11 +21,29 @@
     NSSetUncaughtExceptionHandler(&UncaughtExceptionHandler);
 
     [DBHelper initDatabase];
+    [DBHelper cleanWorkLogsBeforeDays:30];
     return YES;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [DBHelper closeDatabase];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    NSLog(@"applicationWillEnterForeground");
+    NSInteger nowInt = [NSDate dateToInteger:[NSDate date]];
+    if (G_LAST_DATE < 0) {
+        G_LAST_DATE = nowInt;
+        G_NEED_RELOAD_DATA = NO;
+    } else if (G_LAST_DATE != nowInt) {
+        G_LAST_DATE = nowInt;
+        G_NEED_RELOAD_DATA = YES;
+    }
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    NSLog(@"applicationDidEnterBackground");
+    G_LAST_DATE = [NSDate dateToInteger:[NSDate date]];
 }
 
 #pragma mark - UISceneSession lifecycle

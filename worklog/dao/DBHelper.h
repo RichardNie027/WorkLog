@@ -38,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 //重建排序索引
 + (void)reIndexWorkLog:(NSDate *) baseDate;
 
+//清除指定天数之前的记录
++ (BOOL)cleanWorkLogsBeforeDays:(NSInteger) days;
+
 @end
 
 NS_ASSUME_NONNULL_END

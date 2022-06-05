@@ -10,6 +10,7 @@
 #import "DBHelper.h"
 #import "Masonry/Masonry.h"
 #import "MJRefresh/MJRefresh.h"
+#import "Toast/Toast.h"
 
 @interface NotedownTableViewController ()
 @property (strong, nonatomic) UIBarButtonItem *addButtonItem;
@@ -157,6 +158,9 @@ BOOL itemMoved = NO;
             [str appendString:@"\n"];
     }
     pasteboard.string = str;
+    [Toast showMessage:@"工作日志已复制到剪贴板" duration:2 finishHandler:^{
+        
+    }];
 }
 
 #pragma mark - 每行显示内容
