@@ -9,6 +9,7 @@
 #import "DBHelper.h"
 #import "Masonry/Masonry.h"
 #import "MJRefresh/MJRefresh.h"
+#import "Toast/Toast.h"
 
 @interface RecentTableViewController ()
 @property (strong, nonatomic) UIBarButtonItem *multiSelectButtonItem;
@@ -88,8 +89,12 @@
         [alert addAction:tomorrow];
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
-    } else
+    } else {
         [self OnDoneButton:nil];
+        [Toast showMessage:@"没有工作日志被复制" duration:2 finishHandler:^{
+            
+        }];
+    }
 }
 
 -(void)duplicateItemsToKind:(NSString *)jobKind {

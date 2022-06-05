@@ -12,5 +12,6 @@
 #import "Vars.h"
 #import "UIColor+Hex.h"
 #import "NSDate+FMT.h"
+#import "UIImage+Size.h"
 
 #endif /* CommonHeaders_h */

@@ -45,6 +45,11 @@ BOOL itemMoved = NO;
     [self reloadData];
 }
 
+//iOS15状态栏设置白色字 step2/2
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     if (G_NEED_RELOAD_DATA) {
         G_NEED_RELOAD_DATA = NO;
@@ -61,7 +66,7 @@ BOOL itemMoved = NO;
         //self.editButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(OnEditButton:)];
         self.editButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"arrow.up.arrow.down"] style:UIBarButtonItemStylePlain target:self action:@selector(OnEditButton:)];
         self.doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(OnDoneButton:)];
-        self.shareButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"arrowshape.turn.up.forward.fill"] style:UIBarButtonItemStylePlain target:self action:@selector(OnShareButton:)];
+        self.shareButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"arrowshape.turn.up.forward"] style:UIBarButtonItemStylePlain target:self action:@selector(OnShareButton:)];
     }
     switch(state) {
         case 1:

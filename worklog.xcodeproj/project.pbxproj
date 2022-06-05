@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7909E5B8284CF56200D409B0 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7909E5B7284CF56200D409B0 /* BaseNavigationController.m */; };
+		7909E5BB284CF5E300D409B0 /* UIImage+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 7909E5BA284CF5E300D409B0 /* UIImage+Size.m */; };
 		790A2B452849D1AB0033C3DB /* NSDate+FMT.m in Sources */ = {isa = PBXBuildFile; fileRef = 790A2B442849D1AB0033C3DB /* NSDate+FMT.m */; };
 		794D6CF52843ABF4008CD416 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 794D6CF42843ABF4008CD416 /* AppDelegate.m */; };
 		794D6CF82843ABF4008CD416 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 794D6CF72843ABF4008CD416 /* SceneDelegate.m */; };
@@ -69,6 +71,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7909E5B6284CF56200D409B0 /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		7909E5B7284CF56200D409B0 /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		7909E5B9284CF5C500D409B0 /* UIImage+Size.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Size.h"; sourceTree = "<group>"; };
+		7909E5BA284CF5E300D409B0 /* UIImage+Size.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Size.m"; sourceTree = "<group>"; };
 		790A2B432849CF330033C3DB /* NSDate+FMT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+FMT.h"; sourceTree = "<group>"; };
 		790A2B442849D1AB0033C3DB /* NSDate+FMT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FMT.m"; sourceTree = "<group>"; };
 		794D6CF02843ABF4008CD416 /* worklog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = worklog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,6 +267,8 @@
 				794D6CF42843ABF4008CD416 /* AppDelegate.m */,
 				794D6CF62843ABF4008CD416 /* SceneDelegate.h */,
 				794D6CF72843ABF4008CD416 /* SceneDelegate.m */,
+				7909E5B6284CF56200D409B0 /* BaseNavigationController.h */,
+				7909E5B7284CF56200D409B0 /* BaseNavigationController.m */,
 				794D6CF92843ABF4008CD416 /* NotedownTableViewController.h */,
 				794D6CFA2843ABF4008CD416 /* NotedownTableViewController.m */,
 				99391DC028461B2700660FCB /* JobViewController.h */,
@@ -283,6 +291,8 @@
 				79617AB62844DEF40001E8E7 /* UIColor+Hex.m */,
 				790A2B432849CF330033C3DB /* NSDate+FMT.h */,
 				790A2B442849D1AB0033C3DB /* NSDate+FMT.m */,
+				7909E5B9284CF5C500D409B0 /* UIImage+Size.h */,
+				7909E5BA284CF5E300D409B0 /* UIImage+Size.m */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -619,6 +629,7 @@
 				794D6CF52843ABF4008CD416 /* AppDelegate.m in Sources */,
 				99D1D0112847553E007C3AB7 /* FMDatabasePool.m in Sources */,
 				798FB34A284AC53C002F2497 /* MJRefreshHeader.m in Sources */,
+				7909E5BB284CF5E300D409B0 /* UIImage+Size.m in Sources */,
 				79F6A369284C544200042CEE /* Toast.m in Sources */,
 				798883E7284B87E2008F347C /* Vars.m in Sources */,
 				794D6D062843ABF5008CD416 /* main.m in Sources */,
@@ -641,6 +652,7 @@
 				798FB341284AC53C002F2497 /* MJRefreshAutoGifFooter.m in Sources */,
 				798FB338284AC53C002F2497 /* MJRefreshConfig.m in Sources */,
 				798FB337284AC53C002F2497 /* MJRefreshConst.m in Sources */,
+				7909E5B8284CF56200D409B0 /* BaseNavigationController.m in Sources */,
 				79617AD8284500CB0001E8E7 /* ViewController+MASAdditions.m in Sources */,
 				794D6CF82843ABF4008CD416 /* SceneDelegate.m in Sources */,
 				7966C19F284B1568007034C1 /* RecentTableViewController.m in Sources */,
