@@ -7,10 +7,15 @@
 
 #import <UIKit/UIKit.h>
 #import "CommonHeaders.h"
+#import "WorkLogPo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobViewController : UIViewController
+@protocol dataProviderProtocol<NSObject>
+- (void)testWithStr:(NSString *)string;
+@end
+
+@interface JobViewController : UIViewController //<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) NSInteger jobId;              //传入参数，记录ID
 @property (nonatomic) BOOL inEdit;                  //传入参数, default NO

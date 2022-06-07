@@ -45,10 +45,12 @@ BOOL itemMoved = NO;
     [self reloadData];
 }
 
+/*
 //iOS15状态栏设置白色字 step2/2
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
+*/
 
 - (void)viewDidAppear:(BOOL)animated {
     if (G_NEED_RELOAD_DATA) {
@@ -67,6 +69,9 @@ BOOL itemMoved = NO;
         self.editButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"arrow.up.arrow.down"] style:UIBarButtonItemStylePlain target:self action:@selector(OnEditButton:)];
         self.doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(OnDoneButton:)];
         self.shareButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"arrowshape.turn.up.forward"] style:UIBarButtonItemStylePlain target:self action:@selector(OnShareButton:)];
+        UIBarButtonItem *logoButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"XHJ"] style:UIBarButtonItemStylePlain target:self action:nil];
+        logoButtonItem.enabled = NO;
+        self.navigationItem.leftBarButtonItems = @[logoButtonItem];
     }
     switch(state) {
         case 1:
@@ -122,7 +127,10 @@ BOOL itemMoved = NO;
         controller.jobIdx = 300;
         [self.navigationController pushViewController:controller animated:YES];
     }
+}
 
+- (void)addNewJob {
+    [self OnAddButton:nil];
 }
 
 -(void)OnEditButton:(id)sender {
@@ -206,7 +214,10 @@ BOOL itemMoved = NO;
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     //1 自定义头部
     UIView * view=[[UIView alloc] init];
-    view.backgroundColor=[UIColor colorWithHexString:@"#F2F3F7"];
+    //NSString *path = [[NSBundle mainBundle]pathForResource:@"image"ofType:@"jpg"];
+    //UIImage *image = [UIImage imageWithContentsOfFile:path];
+    UIImage *image = [UIImage imageNamed:@"bar_bg_44"];
+    view.layer.contents = (id)image.CGImage;
          
     // 2 增加控件
     UILabel * titleLable=[UILabel new];

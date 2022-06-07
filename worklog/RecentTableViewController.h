@@ -16,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 //表格数据源
 @property (nonatomic, strong) NSMutableArray<NSMutableArray<WorkLogPo *> *> *jobList;
 
-- (void)resetBarItemsWithState:(NSInteger)state;
-
 @end
 
 NS_ASSUME_NONNULL_END

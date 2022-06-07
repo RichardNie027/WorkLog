@@ -6,6 +6,7 @@
 //
 
 #import "SceneDelegate.h"
+#import "NotedownTableViewController.h"
 
 @interface SceneDelegate ()
 
@@ -53,5 +54,16 @@
     // to restore the scene back to its current state.
 }
 
+- (void)windowScene:(UIWindowScene *)windowScene performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    if ([shortcutItem.type isEqualToString:@"0"]) {
+        UITabBarController *tabBarController = self.window.rootViewController;
+        [tabBarController setSelectedIndex:0];
+        UINavigationController *naviController = tabBarController.viewControllers[0];
+        [naviController popToRootViewControllerAnimated:NO];
+        NotedownTableViewController *notedownTVC = naviController.viewControllers[0];
+        [notedownTVC addNewJob];
+        NSLog(@"Shortcut Pressed.");
+    }
+}
 
 @end

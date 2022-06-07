@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "DBHelper.h"
 #import "common/CommonHeaders.h"
+#import "NotedownTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -62,6 +63,20 @@
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
+#pragma mark - Shortcut
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    if ([shortcutItem.type isEqualToString:@"0"]) {
+        UITabBarController *tabBarController = self.window.rootViewController;
+        [tabBarController setSelectedIndex:0];
+        UINavigationController *naviController = tabBarController.viewControllers[0];
+        [naviController popToRootViewControllerAnimated:NO];
+        NotedownTableViewController *notedownTVC = naviController.viewControllers[0];
+        [notedownTVC addNewJob];
+        NSLog(@"Shortcut Pressed.");
+    }
+}
+
+#pragma mark - Exception
 // 获取异常崩溃信息
 void UncaughtExceptionHandler(NSException *exception) {
     NSArray *callStack = [exception callStackSymbols];

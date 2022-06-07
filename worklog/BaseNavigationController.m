@@ -29,22 +29,24 @@
         UINavigationBarAppearance * appearance = [[UINavigationBarAppearance alloc] init];
         //[appearance setBackgroundImage:title_bg];
         [appearance setBackgroundColor:[UIColor colorWithHexString:self.navigationBarBackgroundColor]];
-        [appearance setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
+        [appearance setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:G_SecondColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
         self.navigationBar.standardAppearance = appearance;
         self.navigationBar.scrollEdgeAppearance = appearance;
     }else{
         //[self.navigationBar setBackgroundImage:title_bg forBarMetrics:UIBarMetricsDefault];
         [self.navigationBar setBackgroundColor:[UIColor colorWithHexString:self.navigationBarBackgroundColor]];
-        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
+        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:G_SecondColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
     }
     
-    [self.navigationBar setTintColor:UIColor.whiteColor];
+    [self.navigationBar setTintColor:[UIColor colorWithHexString:G_SecondColor]];
 }
 
+/*
 //iOS15状态栏设置白色字 step1/2
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
+*/
 
 /*
 #pragma mark - Navigation

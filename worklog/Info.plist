@@ -21,6 +21,19 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>0</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>新增</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>增加一笔工作记录</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeAdd</string>
+		</dict>
+	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
 </dict>

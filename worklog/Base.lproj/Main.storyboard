@@ -221,10 +221,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UgM-jS-Q9u">
-                                <rect key="frame" x="20" y="124" width="374" height="300"/>
+                                <rect key="frame" x="20" y="124" width="374" height="220"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="LbC-Tp-DJx"/>
+                                    <constraint firstAttribute="height" constant="220" id="LbC-Tp-DJx"/>
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -241,15 +241,23 @@
                                     <action selector="OnSegmentValueChanged:" destination="mxk-Ch-INH" eventType="valueChanged" id="drG-JV-b4g"/>
                                 </connections>
                             </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Pte-cr-dFi">
+                                <rect key="frame" x="20" y="364" width="374" height="498"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="egv-0j-fPZ"/>
                         <color key="backgroundColor" red="0.89914530520000002" green="0.92546337840000004" blue="0.97719389199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="egv-0j-fPZ" firstAttribute="trailing" secondItem="Pte-cr-dFi" secondAttribute="trailing" constant="20" id="0lR-y7-nlk"/>
                             <constraint firstItem="E5J-E6-Qzo" firstAttribute="top" secondItem="egv-0j-fPZ" secondAttribute="top" constant="20" id="34U-yA-0sc"/>
+                            <constraint firstItem="Pte-cr-dFi" firstAttribute="leading" secondItem="egv-0j-fPZ" secondAttribute="leading" constant="20" id="4ou-gi-3Oi"/>
+                            <constraint firstItem="Pte-cr-dFi" firstAttribute="bottom" secondItem="egv-0j-fPZ" secondAttribute="bottom" id="Fn5-E2-Yue"/>
                             <constraint firstItem="egv-0j-fPZ" firstAttribute="trailing" secondItem="UgM-jS-Q9u" secondAttribute="trailing" constant="20" id="QEE-qz-5yh"/>
                             <constraint firstItem="E5J-E6-Qzo" firstAttribute="centerX" secondItem="8jQ-wZ-L0L" secondAttribute="centerX" id="ZR4-Cj-cqX"/>
                             <constraint firstItem="UgM-jS-Q9u" firstAttribute="leading" secondItem="egv-0j-fPZ" secondAttribute="leading" constant="20" id="kHE-hg-7DP"/>
                             <constraint firstItem="UgM-jS-Q9u" firstAttribute="top" secondItem="egv-0j-fPZ" secondAttribute="top" constant="80" id="tT6-rb-EAl"/>
+                            <constraint firstItem="Pte-cr-dFi" firstAttribute="top" secondItem="UgM-jS-Q9u" secondAttribute="bottom" constant="20" id="u14-75-bnC"/>
                         </constraints>
                     </view>
                     <connections>

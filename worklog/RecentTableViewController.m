@@ -157,8 +157,9 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     //1 自定义头部
     UIView * view=[[UIView alloc] init];
-    view.backgroundColor=[UIColor colorWithHexString:@"#F2F3F7"];
-         
+    UIImage *image = [UIImage imageNamed:@"bar_bg_44"];
+    view.layer.contents = (id)image.CGImage;
+
     // 2 增加控件
     UILabel * titleLable=[UILabel new];
     [view addSubview:titleLable];

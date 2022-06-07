@@ -17,7 +17,8 @@
 //表格数据源
 @property (nonatomic, strong) NSMutableArray<NSMutableArray<WorkLogPo *> *> *jobList;
 
-- (void)resetBarItemsWithState:(NSInteger)state;
+//新增一笔工作记录;
+- (void)addNewJob;
 
 @end
 
