@@ -26,6 +26,10 @@
     [self OnSegmentValueChanged:self.uiJobKind];
     
     [self.navigationItem.backBarButtonItem setTitle:@"返回"];
+    
+    if ([self.delegate respondsToSelector:@selector(loadDataSource)]) {
+        self.jobList = [self.delegate loadDataSource];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -80,6 +84,7 @@
 
 #pragma mark - Segment
 - (IBAction)OnSegmentValueChanged:(id)sender {
+    [self.uiJobTableView reloadData];
     self.view.backgroundColor = [UIColor colorWithHexString:G_JobKindsColorLight[self.uiJobKind.selectedSegmentIndex]];
 }
 
@@ -93,7 +98,7 @@
 }
 */
 
-/*
+
 #pragma mark - 每行显示内容
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: self.uiJobKind.selectedSegmentIndex==2 ? @"cell02" : @"cell01"];
@@ -101,14 +106,14 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier: self.uiJobKind.selectedSegmentIndex==2 ? @"cell02" : @"cell01"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    cell.tag = self.jobList[indexPath.row].jobId;
+    cell.tag = self.jobList[self.uiJobKind.selectedSegmentIndex][indexPath.row].jobId;
     UILabel *label11 = (UILabel *)[cell.contentView viewWithTag:11];
     label11.text = [NSString stringWithFormat:@"%ld、", (long)indexPath.row+1];
     UILabel *label12 = (UILabel *)[cell.contentView viewWithTag:12];
-    label12.text = self.jobList[indexPath.row].jobContent;
+    label12.text = self.jobList[self.uiJobKind.selectedSegmentIndex][indexPath.row].jobContent;
     if(self.uiJobKind.selectedSegmentIndex==2) {
         UILabel *label13 = (UILabel *)[cell.contentView viewWithTag:13];
-        label13.text = [NSDate dateToString:[NSDate dateWithInteger: self.jobList[indexPath.row].jobDate] withFormat:@"MM月dd日"];
+        label13.text = [NSDate dateToString:[NSDate dateWithInteger: self.jobList[self.uiJobKind.selectedSegmentIndex][indexPath.row].jobDate] withFormat:@"MM月dd日"];
     }
     return cell;
 }
@@ -120,7 +125,7 @@
 
 #pragma mark 每组行数
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.jobList.count;
+    return self.jobList[self.uiJobKind.selectedSegmentIndex].count;
 }
-*/
+
 @end

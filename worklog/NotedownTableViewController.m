@@ -12,7 +12,7 @@
 #import "MJRefresh/MJRefresh.h"
 #import "Toast/Toast.h"
 
-@interface NotedownTableViewController ()
+@interface NotedownTableViewController () <DataProviderProtocol>
 @property (strong, nonatomic) UIBarButtonItem *addButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *editButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *doneButtonItem;
@@ -358,6 +358,11 @@ BOOL itemMoved = NO;
             [self.jobList[2] addObject: po];
         }
     }
+}
+
+#pragma mark - DataProviderProtocol Delegate
+- (NSMutableArray<NSMutableArray<WorkLogPo *> *> *)loadDataSource {
+    return self.jobList;
 }
 
 @end

@@ -11,11 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol dataProviderProtocol<NSObject>
-- (void)testWithStr:(NSString *)string;
+@protocol DataProviderProtocol<NSObject>
+- (NSMutableArray<NSMutableArray<WorkLogPo *> *> *)loadDataSource;
 @end
 
-@interface JobViewController : UIViewController //<UITableViewDelegate, UITableViewDataSource>
+@interface JobViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) NSInteger jobId;              //传入参数，记录ID
 @property (nonatomic) BOOL inEdit;                  //传入参数, default NO
@@ -26,6 +26,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UITextView *uiJobContent;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *uiJobKind;
+@property (weak, nonatomic) IBOutlet UITableView *uiJobTableView;
+
+@property(nonatomic,weak)id<DataProviderProtocol> delegate;
+//表格数据源
+@property (nonatomic, weak) NSMutableArray<NSMutableArray<WorkLogPo *> *> *jobList;
 
 @end
 
