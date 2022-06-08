@@ -125,6 +125,7 @@ BOOL itemMoved = NO;
         controller.jobId = -1;
         controller.jobDate = [NSDate dateToInteger:[NSDate date]];
         controller.jobIdx = 300;
+        controller.delegate = self;
         [self.navigationController pushViewController:controller animated:YES];
     }
 }
@@ -214,10 +215,11 @@ BOOL itemMoved = NO;
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     //1 自定义头部
     UIView * view=[[UIView alloc] init];
-    //NSString *path = [[NSBundle mainBundle]pathForResource:@"image"ofType:@"jpg"];
-    //UIImage *image = [UIImage imageWithContentsOfFile:path];
-    UIImage *image = [UIImage imageNamed:@"bar_bg_44"];
-    view.layer.contents = (id)image.CGImage;
+    view.backgroundColor=UIColor.clearColor;
+    // //NSString *path = [[NSBundle mainBundle]pathForResource:@"image"ofType:@"jpg"];
+    // //UIImage *image = [UIImage imageWithContentsOfFile:path];
+    //UIImage *image = [UIImage imageNamed:@"bar_bg_44"];
+    //view.layer.contents = (id)image.CGImage;
          
     // 2 增加控件
     UILabel * titleLable=[UILabel new];
@@ -271,6 +273,7 @@ BOOL itemMoved = NO;
             controller.jobId = weakSelf.jobList[indexPath.section][indexPath.row].jobId;
             controller.jobDate = weakSelf.jobList[indexPath.section][indexPath.row].jobDate;
             controller.jobIdx = weakSelf.jobList[indexPath.section][indexPath.row].jobIdx;
+            controller.delegate = weakSelf;
             [weakSelf.navigationController pushViewController:controller animated:YES];
         }
         completionHandler (YES);
