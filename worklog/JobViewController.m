@@ -26,6 +26,7 @@
     [self OnSegmentValueChanged:self.uiJobKind];
     
     [self.navigationItem.backBarButtonItem setTitle:@"返回"];
+    self.view.backgroundColor = Const.backgroundColors[self.uiJobKind.selectedSegmentIndex];
     
     if ([self.delegate respondsToSelector:@selector(loadDataSource)]) {
         self.jobList = [self.delegate loadDataSource];
@@ -85,7 +86,8 @@
 #pragma mark - Segment
 - (IBAction)OnSegmentValueChanged:(id)sender {
     [self.uiJobTableView reloadData];
-    self.view.backgroundColor = [UIColor colorWithHexString:G_JobKindsColorLight[self.uiJobKind.selectedSegmentIndex]];
+    //self.view.backgroundColor = [UIColor colorWithHexString:G_JobKindsColorLight[self.uiJobKind.selectedSegmentIndex]];
+    self.view.backgroundColor = Const.backgroundColors[self.uiJobKind.selectedSegmentIndex];
 }
 
 /*

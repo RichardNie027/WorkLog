@@ -228,4 +228,3 @@ static NSString * const kColumnJobIdx = @"jobIdx";
 }
 
 @end
-

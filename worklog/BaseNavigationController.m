@@ -23,22 +23,22 @@
     title_bg = [title_bg scaleToSize: titleSize];//设置图片的大小与Navigation Bar相同
     */
     if (!self.navigationBarBackgroundColor || [self.navigationBarBackgroundColor isEqualToString:@""]) {
-        self.navigationBarBackgroundColor = G_MainColor;
+        self.navigationBarBackgroundColor = G_LabelColorHex;
     }
     if(@available(iOS 15.0,*)){
         UINavigationBarAppearance * appearance = [[UINavigationBarAppearance alloc] init];
         //[appearance setBackgroundImage:title_bg];
         [appearance setBackgroundColor:[UIColor colorWithHexString:self.navigationBarBackgroundColor]];
-        [appearance setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:G_SecondColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
+        [appearance setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:G_SecondaryLabelColorHex],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
         self.navigationBar.standardAppearance = appearance;
         self.navigationBar.scrollEdgeAppearance = appearance;
     }else{
         //[self.navigationBar setBackgroundImage:title_bg forBarMetrics:UIBarMetricsDefault];
         [self.navigationBar setBackgroundColor:[UIColor colorWithHexString:self.navigationBarBackgroundColor]];
-        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:G_SecondColor],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
+        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:G_SecondaryLabelColorHex],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
     }
     
-    [self.navigationBar setTintColor:[UIColor colorWithHexString:G_SecondColor]];
+    [self.navigationBar setTintColor:[UIColor colorWithHexString:G_SecondaryLabelColorHex]];
 }
 
 /*
