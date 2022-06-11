@@ -15,12 +15,19 @@ extern NSString * _Nonnull const G_SecondaryLabelColorHex;
 /// 三色深
 extern NSString * _Nonnull const G_TertiaryLabelColorHex;
 
-/// 蓝色浅
+/// 蓝色背景浅
 extern NSString * _Nonnull const G_BackgroundColorHex;
-/// 绿色浅
+/// 绿色背景浅
 extern NSString * _Nonnull const G_SecondaryBackgroundColorHex;
-/// 三色浅
+/// 三色背景浅
 extern NSString * _Nonnull const G_TertiaryBackgroundColorHex;
+
+/// 蓝色背景深
+extern NSString * _Nonnull const G_DarkBackgroundColorHex;
+/// 绿色背景深
+extern NSString * _Nonnull const G_DarkSecondaryBackgroundColorHex;
+/// 三色背景深
+extern NSString * _Nonnull const G_DarkTertiaryBackgroundColorHex;
 
 ///工作项类型 Done Plan Future
 extern NSString * _Nonnull const G_JobKinds[3];

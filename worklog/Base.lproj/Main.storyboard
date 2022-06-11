@@ -12,7 +12,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="liP-78-qXN">
             <objects>
-                <tabBarController id="fbp-H6-JI8" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="fbp-H6-JI8" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JIY-GQ-IMc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -109,7 +109,7 @@
         <!--记录-->
         <scene sceneID="3IR-Ra-ZXV">
             <objects>
-                <navigationController id="V19-u0-3tX" customClass="BaseNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NaviController1" id="V19-u0-3tX" customClass="BaseNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="记录" image="scribble" catalog="system" id="gTz-Px-D98"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XhZ-qx-xAr">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -126,7 +126,7 @@
         <!--记录工作-->
         <scene sceneID="P2G-iz-d3s">
             <objects>
-                <tableViewController id="CcC-38-Bye" customClass="NotedownTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NotedownController" id="CcC-38-Bye" customClass="NotedownTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ZlB-cN-fpd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

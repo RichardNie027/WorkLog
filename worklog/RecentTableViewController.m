@@ -135,6 +135,13 @@
     label11.text = [NSString stringWithFormat:@"%ld、", (long)indexPath.row+1];
     UILabel *label12 = (UILabel *)[cell.contentView viewWithTag:12];
     label12.text = self.jobList[indexPath.section][indexPath.row].jobContent;
+    
+    NSInteger jobKindsIdx = [self.jobList[indexPath.section].accessibilityHint integerValue];
+    if (jobKindsIdx == 0)
+        label11.textColor = [UIColor labelColor];
+    else
+        label11.textColor = [UIColor systemGray3Color];
+    label12.textColor = label11.textColor;
     return cell;
 }
 
@@ -163,7 +170,7 @@
     UILabel * titleLable=[UILabel new];
     [view addSubview:titleLable];
     
-    NSInteger jobKindsIdx = [self.jobList[section].accessibilityHint integerValue]; // accessibilityHint: 0 or 1, D/P;    accessibilityLabel:yyyyMMdd
+    NSInteger jobKindsIdx = [self.jobList[section].accessibilityHint integerValue]; // accessibilityHint: 0 or 1 (D/P);    accessibilityLabel:yyyyMMdd
     titleLable.text = G_JobKindsText[jobKindsIdx];
     if (jobKindsIdx == 0) {
         titleLable.text = [NSString stringWithFormat:@"%@ - %@", G_JobKindsText[jobKindsIdx], [NSDate dateToString:[NSDate dateWithString:self.jobList[section].accessibilityLabel withFormat:@"yyyyMMdd"] withFormat:@"yyyy年MM月dd日 EEE"]];

@@ -14,7 +14,6 @@
 
 @implementation SceneDelegate
 
-
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -45,6 +44,15 @@
 - (void)sceneWillEnterForeground:(UIScene *)scene {
     // Called as the scene transitions from the background to the foreground.
     // Use this method to undo the changes made on entering the background.
+    NSLog(@"sceneWillEnterForeground");
+    NSInteger nowInt = [NSDate dateToInteger:[NSDate date]];
+    if (G_LAST_DATE < 0) {
+        G_LAST_DATE = nowInt;
+        G_NEED_RELOAD_DATA = NO;
+    } else if (G_LAST_DATE != nowInt) {
+        G_LAST_DATE = nowInt;
+        G_NEED_RELOAD_DATA = YES;
+    }
 }
 
 
@@ -52,17 +60,23 @@
     // Called as the scene transitions from the foreground to the background.
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
+    NSLog(@"sceneDidEnterBackground");
+    G_LAST_DATE = [NSDate dateToInteger:[NSDate date]];
 }
 
 - (void)windowScene:(UIWindowScene *)windowScene performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
     if ([shortcutItem.type isEqualToString:@"0"]) {
-        UITabBarController *tabBarController = self.window.rootViewController;
-        [tabBarController setSelectedIndex:0];
-        UINavigationController *naviController = tabBarController.viewControllers[0];
-        [naviController popToRootViewControllerAnimated:NO];
-        NotedownTableViewController *notedownTVC = naviController.viewControllers[0];
-        [notedownTVC addNewJob];
+        [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
         NSLog(@"Shortcut Pressed.");
+    }
+}
+
+- (void) timerAction:(NSTimer *) timer{
+    if (G_FLAG1) {
+        G_FLAG1 = NO;
+        [timer invalidate];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"shortCut1Notification" object:nil];
     }
 }
 

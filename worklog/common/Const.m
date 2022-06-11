@@ -15,12 +15,19 @@ NSString * const G_SecondaryLabelColorHex = @"#7ec700";
 /// 三色深
 NSString * const G_TertiaryLabelColorHex = @"#ff8d3f";
 
-/// 蓝色浅
+/// 蓝色背景浅
 NSString * const G_BackgroundColorHex = @"#e5ecf9";
-/// 绿色浅
+/// 绿色背景浅
 NSString * const G_SecondaryBackgroundColorHex = @"#f2ffdc";
-/// 三色浅
+/// 三色背景浅
 NSString * const G_TertiaryBackgroundColorHex = @"#fce6d5";
+
+/// 蓝色背景深
+NSString * _Nonnull const G_DarkBackgroundColorHex = @"#252a36";
+/// 绿色背景深
+NSString * _Nonnull const G_DarkSecondaryBackgroundColorHex = @"#2d3324";
+/// 三色背景深
+NSString * _Nonnull const G_DarkTertiaryBackgroundColorHex = @"#2f2722";
 
 ///工作项类型 Done Plan Future
 NSString * const G_JobKinds[3] = {@"D", @"P", @"F"};
@@ -80,7 +87,7 @@ NSString * const G_JobKindsColorLight[3] = {G_BackgroundColorHex, G_SecondaryBac
             return [UIColor colorWithHexString: G_BackgroundColorHex];
         }
         else {
-            return [UIColor colorWithHexString: G_LabelColorHex];
+            return [UIColor colorWithHexString: G_DarkBackgroundColorHex];
         }
     }];
 }
@@ -92,7 +99,7 @@ NSString * const G_JobKindsColorLight[3] = {G_BackgroundColorHex, G_SecondaryBac
             return [UIColor colorWithHexString: G_SecondaryBackgroundColorHex];
         }
         else {
-            return [UIColor colorWithHexString: G_SecondaryLabelColorHex];
+            return [UIColor colorWithHexString: G_DarkSecondaryBackgroundColorHex];
         }
     }];
 }
@@ -104,7 +111,7 @@ NSString * const G_JobKindsColorLight[3] = {G_BackgroundColorHex, G_SecondaryBac
             return [UIColor colorWithHexString: G_TertiaryBackgroundColorHex];
         }
         else {
-            return [UIColor colorWithHexString: G_TertiaryLabelColorHex];
+            return [UIColor colorWithHexString: G_DarkTertiaryBackgroundColorHex];
         }
     }];
 }

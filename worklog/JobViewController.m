@@ -27,6 +27,7 @@
     
     [self.navigationItem.backBarButtonItem setTitle:@"返回"];
     self.view.backgroundColor = Const.backgroundColors[self.uiJobKind.selectedSegmentIndex];
+    self.uiJobContent.textColor = Const.labelColors[self.uiJobKind.selectedSegmentIndex];
     
     if ([self.delegate respondsToSelector:@selector(loadDataSource)]) {
         self.jobList = [self.delegate loadDataSource];
@@ -88,6 +89,7 @@
     [self.uiJobTableView reloadData];
     //self.view.backgroundColor = [UIColor colorWithHexString:G_JobKindsColorLight[self.uiJobKind.selectedSegmentIndex]];
     self.view.backgroundColor = Const.backgroundColors[self.uiJobKind.selectedSegmentIndex];
+    self.uiJobContent.textColor = Const.labelColors[self.uiJobKind.selectedSegmentIndex];
 }
 
 /*
@@ -111,8 +113,10 @@
     cell.tag = self.jobList[self.uiJobKind.selectedSegmentIndex][indexPath.row].jobId;
     UILabel *label11 = (UILabel *)[cell.contentView viewWithTag:11];
     label11.text = [NSString stringWithFormat:@"%ld、", (long)indexPath.row+1];
+    label11.textColor = Const.labelColors[self.uiJobKind.selectedSegmentIndex];
     UILabel *label12 = (UILabel *)[cell.contentView viewWithTag:12];
     label12.text = self.jobList[self.uiJobKind.selectedSegmentIndex][indexPath.row].jobContent;
+    label12.textColor = label11.textColor;
     if(self.uiJobKind.selectedSegmentIndex==2) {
         UILabel *label13 = (UILabel *)[cell.contentView viewWithTag:13];
         label13.text = [NSDate dateToString:[NSDate dateWithInteger: self.jobList[self.uiJobKind.selectedSegmentIndex][indexPath.row].jobDate] withFormat:@"MM月dd日"];

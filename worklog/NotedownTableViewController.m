@@ -23,9 +23,9 @@
 
 BOOL itemMoved = NO;
 
+#pragma mark - ViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.parameters = [[NSMutableDictionary alloc] init];
     // Do any additional setup after loading the view.
     
     [self resetBarItemsWithState:1];
@@ -43,6 +43,24 @@ BOOL itemMoved = NO;
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
     
     [self reloadData];
+    
+    //监听一个通知，当收到通知时，调用notificationAction方法
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:@"shortCut1Notification" object:nil];
+}
+
+- (void)viewDidUnload {
+    //移除指定的通知，不然会造成内存泄露
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"shortCut1Notification" object:nil];
+    //对象可以添加多个通知，此处移除该对象的所有通知
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) notificationAction:(NSNotification *)notification{
+    G_FLAG1 = YES;
+    [self.tabBarController setSelectedIndex:0];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self addNewJob];
+    NSLog(@"触发通知");
 }
 
 /*
@@ -187,8 +205,10 @@ BOOL itemMoved = NO;
     cell.tag = self.jobList[indexPath.section][indexPath.row].jobId;
     UILabel *label11 = (UILabel *)[cell.contentView viewWithTag:11];
     label11.text = [NSString stringWithFormat:@"%ld、", (long)indexPath.row+1];
+    label11.textColor = Const.labelColors[indexPath.section];
     UILabel *label12 = (UILabel *)[cell.contentView viewWithTag:12];
     label12.text = self.jobList[indexPath.section][indexPath.row].jobContent;
+    label12.textColor = label11.textColor;
     if(indexPath.section == 2) {
         UILabel *label13 = (UILabel *)[cell.contentView viewWithTag:13];
         label13.text = [NSDate dateToString:[NSDate dateWithInteger: self.jobList[indexPath.section][indexPath.row].jobDate] withFormat:@"MM月dd日"];

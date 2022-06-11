@@ -23,6 +23,13 @@
 
     [DBHelper initDatabase];
     [DBHelper cleanWorkLogsBeforeDays:30];
+    
+    //如果是通过3D Touch点击shortItem进入应用的话，那么UIApplicationLaunchOptionsShortcutItemKey一定返回相应的UIApplicationShortcutItem。
+    UIApplicationShortcutItem *shortItem =[launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey];
+    if (shortItem) {
+        //如果从3D Touch点击item进行，那么返回false，不再触发-(void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler方法
+        return NO;
+    }
     return YES;
 }
 
@@ -66,13 +73,17 @@
 #pragma mark - Shortcut
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
     if ([shortcutItem.type isEqualToString:@"0"]) {
-        UITabBarController *tabBarController = self.window.rootViewController;
-        [tabBarController setSelectedIndex:0];
-        UINavigationController *naviController = tabBarController.viewControllers[0];
-        [naviController popToRootViewControllerAnimated:NO];
-        NotedownTableViewController *notedownTVC = naviController.viewControllers[0];
-        [notedownTVC addNewJob];
+        [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
         NSLog(@"Shortcut Pressed.");
+    }
+}
+
+- (void) timerAction:(NSTimer *) timer{
+    if (G_FLAG1) {
+        G_FLAG1 = NO;
+        [timer invalidate];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"shortCut1Notification" object:nil];
     }
 }
 
