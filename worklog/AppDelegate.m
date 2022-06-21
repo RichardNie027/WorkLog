@@ -19,10 +19,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     NSSetUncaughtExceptionHandler(&UncaughtExceptionHandler);
 
     [DBHelper initDatabase];
     [DBHelper cleanWorkLogsBeforeDays:30];
+
+    if (@available(iOS 13.0, *)) {
+        // 在SceneDelegate里创建UIWindow
+    }
+    else {
+        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [self.window setBackgroundColor:[UIColor whiteColor]];
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        [self.window setRootViewController:[mainStoryboard instantiateInitialViewController]];
+        [self.window makeKeyAndVisible];
+    }
     
     //如果是通过3D Touch点击shortItem进入应用的话，那么UIApplicationLaunchOptionsShortcutItemKey一定返回相应的UIApplicationShortcutItem。
     UIApplicationShortcutItem *shortItem =[launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey];
@@ -72,10 +85,17 @@
 
 #pragma mark - Shortcut
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
-    if ([shortcutItem.type isEqualToString:@"0"]) {
-        [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
+    completionHandler([self dealwithShortcutItemType: shortcutItem.type]);
+}
+
+- (BOOL) dealwithShortcutItemType: (NSString *)shortcutItemType {
+    if ([shortcutItemType isEqualToString:@"0"]) {
+        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerAction:) userInfo:nil repeats:YES];
         NSLog(@"Shortcut Pressed.");
+        return YES;
     }
+    else
+        return NO;
 }
 
 - (void) timerAction:(NSTimer *) timer{

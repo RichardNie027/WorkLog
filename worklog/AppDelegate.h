@@ -9,6 +9,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+/// 兼容iOS13之前的版本
+@property (strong, nonatomic) UIWindow *window;
 
 @end
 

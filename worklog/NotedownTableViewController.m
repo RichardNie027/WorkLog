@@ -135,7 +135,7 @@ BOOL itemMoved = NO;
     [self presentViewController:alert animated:YES completion:nil];
      */
     
-    UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard * main = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     JobViewController* controller = [main instantiateViewControllerWithIdentifier:@"JobViewController" ];
     if (controller) {
         controller.jobContent = @"";
