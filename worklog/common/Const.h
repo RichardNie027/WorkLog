@@ -59,6 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 //背景色s
 + (NSArray<UIColor *> *)backgroundColors;
 
+//TableView背景
++ (UIColor *) tableViewBackgroundColor;
+
 @end
 
 NS_ASSUME_NONNULL_END

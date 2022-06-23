@@ -26,7 +26,10 @@
     self.tableView.estimatedRowHeight = 52;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
-    
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = Const.tableViewBackgroundColor;
+    self.tableView.backgroundView = view;
+
     __unsafe_unretained typeof(self) weakSelf = self;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

@@ -14,7 +14,8 @@
 
 @interface NotedownTableViewController () <DataProviderProtocol>
 @property (strong, nonatomic) UIBarButtonItem *addButtonItem;
-@property (strong, nonatomic) UIBarButtonItem *editButtonItem;
+@property (strong, nonatomic) UIBarButtonItem *menuButtonItem;
+@property (strong, nonatomic) UIBarButtonItem *orderButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *doneButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *shareButtonItem;
 @end
@@ -24,6 +25,49 @@
 BOOL itemMoved = NO;
 
 #pragma mark - ViewController
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        //监听一个通知，当收到通知时，调用notificationAction方法
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:@"shortCut1Notification" object:nil];
+        NSLog(@"init");
+    }
+    return self;
+}
+- (instancetype)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    if (self) {
+        //监听一个通知，当收到通知时，调用notificationAction方法
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:@"shortCut1Notification" object:nil];
+        NSLog(@"initWithStyle");
+    }
+    return self;
+}
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        //监听一个通知，当收到通知时，调用notificationAction方法
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:@"shortCut1Notification" object:nil];
+        NSLog(@"initWithNibName");
+    }
+    return self;
+}
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        //监听一个通知，当收到通知时，调用notificationAction方法
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:@"shortCut1Notification" object:nil];
+        NSLog(@"initWithCoder");
+    }
+    return self;
+}
+- (void)dealloc {
+    //移除指定的通知，不然会造成内存泄露
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"shortCut1Notification" object:nil];
+    //对象可以添加多个通知，此处移除该对象的所有通知
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -31,6 +75,9 @@ BOOL itemMoved = NO;
     [self resetBarItemsWithState:1];
     self.tableView.estimatedRowHeight = 52;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = Const.tableViewBackgroundColor;
+    self.tableView.backgroundView = view;
     
     __unsafe_unretained typeof(self) weakSelf = self;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -43,24 +90,16 @@ BOOL itemMoved = NO;
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
     
     [self reloadData];
-    
-    //监听一个通知，当收到通知时，调用notificationAction方法
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationAction:) name:@"shortCut1Notification" object:nil];
-}
-
-- (void)viewDidUnload {
-    //移除指定的通知，不然会造成内存泄露
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"shortCut1Notification" object:nil];
-    //对象可以添加多个通知，此处移除该对象的所有通知
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void) notificationAction:(NSNotification *)notification{
-    G_FLAG1 = YES;
-    [self.tabBarController setSelectedIndex:0];
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    [self addNewJob];
-    NSLog(@"触发通知");
+    if (self.isViewLoaded) {
+        G_FLAG1 = YES;
+        [self.tabBarController setSelectedIndex:0];
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [self addNewJob];
+        NSLog(@"触发通知");
+    }
 }
 
 /*
@@ -84,7 +123,7 @@ BOOL itemMoved = NO;
         //UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"右边按钮" style:UIBarButtonItemStylePlain target:self action:@selector(OnRightButton:)];
         self.addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(OnAddButton:)];
         //self.editButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(OnEditButton:)];
-        self.editButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"arrow.up.arrow.down"] style:UIBarButtonItemStylePlain target:self action:@selector(OnEditButton:)];
+        self.orderButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"arrow.up.arrow.down"] style:UIBarButtonItemStylePlain target:self action:@selector(OnEditButton:)];
         self.doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(OnDoneButton:)];
         self.shareButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"arrowshape.turn.up.forward"] style:UIBarButtonItemStylePlain target:self action:@selector(OnShareButton:)];
         UIBarButtonItem *logoButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"XHJ"] style:UIBarButtonItemStylePlain target:self action:nil];
@@ -93,7 +132,12 @@ BOOL itemMoved = NO;
     }
     switch(state) {
         case 1:
-            self.navigationItem.rightBarButtonItems = @[self.addButtonItem, self.editButtonItem, self.shareButtonItem];
+            if (@available(iOS 14.0, *)) {
+                self.menuButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"ellipsis.circle"] menu:[self menu]];
+                self.navigationItem.rightBarButtonItems = @[self.addButtonItem, self.menuButtonItem];
+            } else {
+                self.navigationItem.rightBarButtonItems = @[self.addButtonItem, self.orderButtonItem, self.shareButtonItem];
+            }
             break;
         case 2:
             self.navigationItem.rightBarButtonItems = @[self.doneButtonItem];
@@ -101,6 +145,18 @@ BOOL itemMoved = NO;
         default:
             break;
     }
+}
+
+- (UIMenu *)menu API_AVAILABLE(ios(14.0)){
+    UIAction *editAction = [UIAction actionWithTitle:@"顺序" image:[UIImage systemImageNamed:@"arrow.up.arrow.down"] identifier:@"order" handler:^(UIAction *action) {
+        [self OnEditButton:nil];
+        NSLog(@"顺序");
+    }];
+    UIAction *shareAction = [UIAction actionWithTitle:@"分享" image:[UIImage systemImageNamed:@"arrowshape.turn.up.forward"] identifier:@"share" handler:^(UIAction *action) {
+        [self OnShareButton:nil];
+        NSLog(@"分享");
+    }];
+    return [UIMenu menuWithChildren:@[editAction, shareAction]];
 }
 
 -(void)OnAddButton:(id)sender {

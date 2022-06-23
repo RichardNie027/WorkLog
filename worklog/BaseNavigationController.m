@@ -35,7 +35,7 @@
     }else{
         //[self.navigationBar setBackgroundImage:title_bg forBarMetrics:UIBarMetricsDefault];
         [self.navigationBar setBackgroundColor:[UIColor colorWithHexString:self.navigationBarBackgroundColor]];
-        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:G_SecondaryLabelColorHex],NSFontAttributeName:[UIFont systemFontOfSize:24 weight:UIFontWeightBold]}];
+        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:G_SecondaryLabelColorHex],NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightBold]}];
     }
     
     [self.navigationBar setTintColor:[UIColor colorWithHexString:G_SecondaryLabelColorHex]];

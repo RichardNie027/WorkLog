@@ -121,4 +121,16 @@ NSString * const G_JobKindsColorLight[3] = {G_BackgroundColorHex, G_SecondaryBac
     return @[Const.backgroundColor, Const.secondaryBackgroundColor, Const.tertiaryBackgroundColor];
 }
 
+//TableView背景
++ (UIColor *) tableViewBackgroundColor {
+    return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull trainCollection) {
+        if ([trainCollection userInterfaceStyle] == UIUserInterfaceStyleLight) {
+            return [UIColor colorWithPatternImage:[UIImage imageNamed:@"splash01"]];
+        }
+        else {
+            return UIColor.systemGray6Color;
+        }
+    }];
+}
+
 @end

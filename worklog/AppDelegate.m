@@ -29,12 +29,14 @@
         // 在SceneDelegate里创建UIWindow
     }
     else {
+        /*屏蔽以下代码，采用系统自动加载Main.storyboard
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         [self.window setBackgroundColor:[UIColor whiteColor]];
         
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         [self.window setRootViewController:[mainStoryboard instantiateInitialViewController]];
         [self.window makeKeyAndVisible];
+         */
     }
     
     //如果是通过3D Touch点击shortItem进入应用的话，那么UIApplicationLaunchOptionsShortcutItemKey一定返回相应的UIApplicationShortcutItem。

@@ -23,6 +23,7 @@
     // 在这里手动创建新的window
     if (@available(iOS 13.0, *))
     {
+        /*屏蔽以下代码，采用系统自动加载Main.storyboard。启用手动加载，需要清空Main Interface的Main，删除Main.storyboard，否则重复加载
         UIWindowScene *windowScene = (UIWindowScene *)scene;
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         [self.window setWindowScene:windowScene];
@@ -31,6 +32,7 @@
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         [self.window setRootViewController:[mainStoryboard instantiateInitialViewController]];
         [self.window makeKeyAndVisible];
+         */
         
         [self dealwithShortcutItemType: connectionOptions.shortcutItem.type];
     }
